@@ -1,0 +1,744 @@
+{%csrf_token%}
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon and Touch Icons-->
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" madia='screen' href='{% static "css/normalize.css" %}'>
+
+
+
+  <!-- bootstrap styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  <!-- custom styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
+  <style>
+    #toast-container > .toast-error { background-color: #BD362F; }
+    #toast-container > .toast-success { background-color: #51A351; }
+  </style>
+  <link rel="stylesheet" media="screen" href="{% static "css/theme.min.css" %}">
+
+  <link rel="stylesheet" media="screen" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+
+  <link rel="stylesheet" media="screen" href="{% static "css/style.css" %}">
+
+
+
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-dark sidebar">
+      <div class="sidebar-header">
+        <h4 style="color: #FFFAF0; text-align: left; margin: 0;">Каталог товаров</h4>
+        <button class="close" type="button" data-dismiss="" aria-label="Close">
+          <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16" style="margin: 0; text-align: right; margin-top: -1.5em;">
+              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg></span>
+        </button>
+      </div>
+
+      <ul class="list-unstyled components category">
+        <li>
+          <a href="#categoty-1">Электротехника</a>
+        </li>
+        <li>
+          <a href="#categoty-2">Компьютеры и периферия</a>
+        </li>
+
+        <li>
+          <a href="#categoty-3">Офисная техника и мебель</a>
+        </li>
+
+        <li>
+          <a href="#categoty-4">Авто</a>
+        </li>
+
+        <li>
+          <a href="#categoty-5">Бытовая техника</a>
+        </li>
+
+        <li>
+          <a href="#categoty-6">Товары для дома</a>
+        </li>
+
+        <li>
+          <a href="#categoty-7">Строительство и ремонт</a>
+        </li>
+
+        <li>
+          <a href="#categoty-8">Авто</a>
+        </li>
+
+        <li>
+          <a href="#categoty-9">Сад и огород</a>
+        </li>
+
+        <li>
+          <a href="#categoty-10">Красота и здоровье</a>
+        </li>
+
+        <li>
+          <a href="#categoty-11">Детские товары</a>
+        </li>
+
+        <li>
+          <a href="#categoty-12">Спорт, туризм и отдых</a>
+        </li>
+
+        <li>
+          <a href="#categoty-13">Одежда, обувь и аксессуары</a>
+        </li>
+
+        <li>
+          <a href="#categoty-14">Хобби, творчество, книги</a>
+        </li>
+
+        <li>
+          <a href="#categoty-15">Игры, софт и развлечения</a>
+        </li>
+
+        <li>
+          <a href="#categoty-16">Часы, сувениры и подарки</a>
+        </li>
+
+        <li>
+          <a href="#categoty-16">Аптека</a>
+        </li>
+
+        <li>
+          <a href="#categoty-17">Зоотовары</a>
+        </li>
+
+        <li>
+          <a href="#categoty-18">Продукты питания</a>
+        </li>
+
+        <li>
+          <a href="#categoty-19">Алкогольны и слабоалкогольные товары</a>
+        </li>
+
+        <li>
+          <a href="#categoty-20">Товары для курения</a>
+        </li>
+
+        <li>
+          <a href="#categoty-21">Товары для торговли</a>
+        </li>
+
+        <li>
+          <a href="#">Пиротехника</a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+    <nav id="sidebar-2" class="sidebar category">
+
+      <div class="sidebar-header">
+        <h4 style="color: #FFFAF0; text-align: left; margin: 0;">Каталог товаров</h4>
+        <button class="close" type="button" data-dismiss="" aria-label="Close">
+          <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16" style="margin: 0; text-align: right; margin-top: -2.3em;">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+            </svg></span>
+        </button>
+      </div>
+      <ul id="categoty-1" class="list-unstyled components">
+        <li><a href="#/">Телефоны и гаджеты</a></li>
+        <li><a href="#/">Фото - видео</a></li>
+        <li><a href="#/">Аудиотехника</a></li>
+        <li><a href="#/">Музыкальное оборудование</a></li>
+        <li><a href="#/">Зарядные устройства и элементы питания</a></li>
+      </ul>
+
+      <ul id="categoty-2" class="list-unstyled components">
+        <li><a href="#/">Планшеты, ноутбуки, читалки</a></li>
+        <li><a href="#/">Компьютеры</a></li>
+        <li><a href="#/">Мониторы</a></li>
+        <li><a href="#/">Комплектующие для ПК</a></li>
+        <li><a href="#/">Периферия и аксессуары</a></li>
+        <li><a href="#/">Сетевое оборудование</a></li>
+        <li><a href="#/">Программное обеспечение</a></li>
+        <li><a href="#/">Носители информации</a></li>
+        <li><a href="#/">Манипуляторы и устройства ввода</a></li>
+        <li><a href="#/">Защита питания</a></li>
+        <li><a href="#/">Компьютерные столы, кресла</a></li>
+      </ul>
+
+      <ul id="categoty-3" class="list-unstyled components">
+        <li><a href="#/">Оргтехника</a></li>
+        <li><a href="#/">Картриджи, тонеры и бумага</a></li>
+        <li><a href="#/">Офисная техника</a></li>
+        <li><a href="#/">Офисная мебель</a></li>
+        <li><a href="#/">Банковское оборудование</a></li>
+        <li><a href="#/">Оборудование для магазинов</a></li>
+        <li><a href="#/">Оборудование для презентаций</a></li>
+        <li><a href="#/">Бизнес-аксессуары</a></li>
+        <li><a href="#/">Канцелярские товары</a></li>
+        <li><a href="#/">Папки и архивация</a></li>
+        <li><a href="#/">Пишущие принадлежности</a></li>
+        <li><a href="#/">Упаковочные материалы</a></li>
+        <li><a href="#/">Кулеры для воды</a></li>
+        <li><a href="#/">Конференц связь</a></li>
+        <li><a href="#/">Офисные настольные светильники</a></li>
+      </ul>
+
+      <ul id="categoty-4" class="list-unstyled components">
+        <li><a href="#/">Автозапчасти</a></li>
+        <li><a href="#/">Автоинструмент и принадлежности</a></li>
+        <li><a href="#/">Автоэлектрика</a></li>
+        <li><a href="#/">Багажники, боксы, крепления</a></li>
+        <li><a href="#/">Масла, технические жидкости и автохимия</a></li>
+        <li><a href="#/">Организация пространства</a></li>
+        <li><a href="#/">Мойка высокого давления</a></li>
+        <li><a href="#/">Обустройство салона</a></li>
+        <li><a href="#/">Уход за автомобилем</a></li>
+        <li><a href="#/">Товары в дорогу</a></li>
+        <li><a href="#/">Транспондер для платных дорог</a></li>
+        <li><a href="#/">Шумо и теплоизоляция для автомобилей</a></li>
+        <li><a href="#/">Мототовары</a></li>
+      </ul>
+
+      <ul id="categoty-5" class="list-unstyled components">
+        <li><a href="#/">Крупно бытовая техника</a></li>
+        <li><a href="#/">Встраиваемая техника</a></li>
+        <li><a href="#/">Климатическое оборудование</a></li>
+        <li><a href="#/">Техника для уборки</a></li>
+        <li><a href="#/">Уход за одеждой</a></li>
+        <li><a href="#/">Техника для кухни</a></li>
+        <li><a href="#/">Сумки - холодильники</a></li>
+        <li><a href="#/">Фильтры для воды</a></li>
+        <li><a href="#/">Швейное оборудование</a></li>
+        <li><a href="#/">Профессиональное оборудование для кухни и ресторанов</a></li>
+        <li><a href="#/">Телевизоры и проекторы</a></li>
+      </ul>
+
+      <ul id="categoty-6" class="list-unstyled components">
+        <li><a href="#/">Посуда</a></li>
+        <li><a href="#/">Хозяйственные товары</a></li>
+        <li><a href="#/">Бытовая химия</a></li>
+        <li><a href="#/">Принадлежности для уборки</a></li>
+        <li><a href="#/">Сушилки для белья</a></li>
+        <li><a href="#/">Аксессуары для ванной комнаты и туалета</a></li>
+        <li><a href="#/">Текстиль</a></li>
+        <li><a href="#/">Пожарное оборудование</a></li>
+        <li><a href="#/">Домашний интерьер</a></li>
+        <li><a href="#/">Ковры</a></li>
+        <li><a href="#/">Организация пространства</a></li>
+        <li><a href="#/">Надувная мебель и матрацы</a></li>
+        <li><a href="#/">Мебель</a></li>
+        <li><a href="#/">Средства против насекомых</a></li>
+        <li><a href="#/">Уход за одеждой</a></li>
+        <li><a href="#/">Новогодние товары</a></li>
+      </ul>
+      <ul id="categoty-7" class="list-unstyled components">
+        <li><a href="#/">Инструменты</a></li>
+        <li><a href="#/">Электрика</a></li>
+        <li><a href="#/">Безопасность и видеонаблюдение</a></li>
+        <li><a href="#/">Освещение</a></li>
+        <li><a href="#/">Сантехника</a></li>
+        <li><a href="#/">Измерительный и разметочный инструмент</a></li>
+        <li><a href="#/">Отопление и водоснабжение</a></li>
+        <li><a href="#/">Ящики, сумки и мебель для мастерской</a></li>
+        <li><a href="#/">Силовая и строительная техника</a></li>
+        <li><a href="#/">Расходные материалы и принадлежности для инструментов</a></li>
+        <li><a href="#/">Строительный крепеж и фурнитура</a></li>
+        <li><a href="#/">Сторительные и отделочные материалы</a></li>
+        <li><a href="#/">Спецодежда и средства индивидуальной защиты</a></li>
+      </ul>
+
+
+
+
+      <ul id="categoty-8" class="list-unstyled components">
+        <li><a href="#/">Садовая техника</a></li>
+        <li><a href="#/">Ручной садовый инструмент</a></li>
+        <li><a href="#/">Оснастка к садовой технике</a></li>
+        <li><a href="#/">Системы полива</a></li>
+        <li><a href="#/">Защита и уход за садом</a></li>
+        <li><a href="#/">Аксессуары для садовых работ</a></li>
+        <li><a href="#/">Садовая мебель и декор</a></li>
+        <li><a href="#/">Биотуалеты и аксессуары</a></li>
+        <li><a href="#/">Удобрения, грунты, газон, сидериты</a></li>
+        <li><a href="#/">Парники, теплицы, укрывной материал,аксессуары</a></li>
+        <li><a href="#/">Гидропоника</a></li>
+        <li><a href="#/">Бассейны аксессуары</a></li>
+        <li><a href="#/">Организация пространства</a></li>
+        <li><a href="#/">Газовые баллоны и аксессуары</a></li>
+        <li><a href="#/">Хозяйственные постройки</a></li>
+        <li><a href="#/">Уличное освещение для дома и сада</a></li>
+        <li><a href="#/">Спецодежда и средства индивидуальной защиты</a></li>
+        <li><a href="#/">Садовые души, емкости</a></li>
+        <li><a href="#/">Дачные умывальники</a></li>
+        <li><a href="#/">Цветы и аксессуары для рассады</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-9" class="list-unstyled components">
+        <li><a href="#/">Техника для красоты</a></li>
+        <li><a href="#/">Парфюмерия</a></li>
+        <li><a href="#/">Косметика</a></li>
+        <li><a href="#/">Личная гигиена</a></li>
+        <li><a href="#/">Уход за полостью рта</a></li>
+        <li><a href="#/">Маникюр и педикюр</a></li>
+        <li><a href="#/">Парикмахерская техника</a></li>
+        <li><a href="#/">SPA</a></li>
+        <li><a href="#/">Все для массажа</a></li>
+        <li><a href="#/">Оптика</a></li>
+        <li><a href="#/">Медицинская техника</a></li>
+        <li><a href="#/">Ортопедия</a></li>
+        <li><a href="#/">Уход за больными и средства реабилитации</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-10" class="list-unstyled components">
+        <li><a href="#/">Детская комната и мебель</a></li>
+        <li><a href="#/">Детская обувь</a></li>
+        <li><a href="#/">Детская одежда</a></li>
+        <li><a href="#/">Детские автокресла</a></li>
+        <li><a href="#/">Детские игрушки</a></li>
+        <li><a href="#/">Детские коляски</a></li>
+        <li><a href="#/">Детский спорт и активный отдых</a></li>
+        <li><a href="#/">Детский транспорт</a></li>
+        <li><a href="#/">Детское творчество и развитие</a></li>
+        <li><a href="#/">Здоровье и уход за малышом</a></li>
+        <li><a href="#/">Зимний спорт</a></li>
+        <li><a href="#/">Кормление малыша</a></li>
+        <li><a href="#/">Ортопедическая обувь</a></li>
+        <li><a href="#/">Радио и видеоняни</a></li>
+        <li><a href="#/">Техника для мам и малышей</a></li>
+        <li><a href="#/">Товары для детского праздника</a></li>
+        <li><a href="#/">Товары для малышей</a></li>
+        <li><a href="#/">Товары для мам</a></li>
+        <li><a href="#/">Товары для учебы</a></li>
+        <li><a href="#/">Книги для детей и родителей</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-11" class="list-unstyled components">
+        <li><a href="#/">Самокаты, скейтборде и ролики</a></li>
+        <li><a href="#/">Велоспорт</a></li>
+        <li><a href="#/">Охота и рыбалка</a></li>
+        <li><a href="#/">Туризм и кемпинг</a></li>
+        <li><a href="#/">Зимние виды спорта</a></li>
+        <li><a href="#/">Спортивное питание</a></li>
+        <li><a href="#/">Тренажеры и фитнес</a></li>
+        <li><a href="#/">Турестическая одежда и обувь</a></li>
+        <li><a href="#/">Настольные спортивные игры</a></li>
+        <li><a href="#/">Спортивная стрельба</a></li>
+        <li><a href="#/">Командный спорт</a></li>
+        <li><a href="#/">Бокс и единоборства</a></li>
+        <li><a href="#/">Плавание и сноркелинг</a></li>
+        <li><a href="#/">Спортивные аксессуары</a></li>
+        <li><a href="#/">Металлоискатели</a></li>
+        <li><a href="#/">Багаж для путешествий</a></li>
+        <li><a href="#/">Бассейны и аксессуары</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-12" class="list-unstyled components">
+        <li><a href="#/">Мужская одежда</a></li>
+        <li><a href="#/">Женская одежда</a></li>
+        <li><a href="#/">Детская одежда</a></li>
+        <li><a href="#/">Обувь</a></li>
+        <li><a href="#/">Сумки и чемоданы, кожгалантерея</a></li>
+        <li><a href="#/">Аксессуары</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-13" class="list-unstyled components">
+        <li><a href="#/">Книги</a></li>
+        <li><a href="#/">Настольные игры</a></li>
+        <li><a href="#/">Раскраски, роспись, наборы для творчества</a></li>
+        <li><a href="#/">3D ручки для рисования</a></li>
+        <li><a href="#/">Радиоуправляемые и сборные модели</a></li>
+        <li><a href="#/">Товары для коллекционеров</a></li>
+        <li><a href="#/">Товары для художников</a></li>
+        <li><a href="#/">Шитье и вязание</a></li>
+        <li><a href="#/">Электронные планшеты для рисования</a></li>
+      </ul>
+
+      <ul id="categoty-14" class="list-unstyled components">
+        <li><a href="#/"> PlayStation</a></li>
+        <li><a href="#/">Xbox</a></li>
+        <li><a href="#/">Nintendo</a></li>
+        <li><a href="#/">Игры для PC</a></li>
+        <li><a href="#/">Ретро консоли</a></li>
+        <li><a href="#/">Аксессуары</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-15" class="list-unstyled components">
+        <li><a href="#/">Наручные часы</a></li>
+        <li><a href="#/">Интерьерные часы</a></li>
+        <li><a href="#/">Подарки и сувениры</a></li>
+        <li><a href="#/">Бизнес сувениры</a></li>
+        <li><a href="#/">Ювелирные украшения и бижутерии</a></li>
+        <li><a href="#/">Подарочные сертификаты</a></li>
+        <li><a href="#/">Праздничное освещения</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-16" class="list-unstyled components">
+        <li><a href="#/">Лекарственные средства</a></li>
+        <li><a href="#/">Витамины, БАДы и пищевые добавки</a></li>
+        <li><a href="#/">Товары для взрослых</a></li>
+        <li><a href="#/">Аюрведа</a></li>
+        <li><a href="#/">Профилактические средства</a></li>
+        <li><a href="#/">Медицинские изделия и расходные материалы</a></li>
+        <li><a href="#/">Кислородные баллоны, коктейли</a></li>
+        <li><a href="#/">Оборудование и мебель для медучреждений</a></li>
+        <li><a href="#/">Маски защитные</a></li>
+        <li><a href="#/">Перчатки защитные</a></li>
+        <li><a href="#/">Антисептики</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-17" class="list-unstyled components">
+        <li><a href="#/">Для кошек</a></li>
+        <li><a href="#/">Для собак</a></li>
+        <li><a href="#/">Для птиц</a></li>
+        <li><a href="#/">Для рыб и рептилий</a></li>
+        <li><a href="#/">Средства от блох и клещей</a></li>
+        <li><a href="#/">Фермерское хозяйство</a></li>
+        <li><a href="#/">Умные товары для животных</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-18" class="list-unstyled components">
+        <li><a href="#/">Детское питание</a></li>
+        <li><a href="#/">Здоровое питание и диетические продукты</a></li>
+        <li><a href="#/">Кондитерские изделия</a></li>
+        <li><a href="#/">Консервация и соусы</a></li>
+        <li><a href="#/">Макароны, крупы, бакалея</a></li>
+        <li><a href="#/">Готовые завтраки и каши</a></li>
+        <li><a href="#/">Приправы и специи</a></li>
+        <li><a href="#/">Хлеб и выпечка</a></li>
+        <li><a href="#/">Сыр, масло яйца</a></li>
+        <li><a href="#/">Молочные продукты</a></li>
+        <li><a href="#/">Соки, вода, напитки</a></li>
+        <li><a href="#/">Овощи, фрукты</a></li>
+        <li><a href="#/">Рыба и морепродукты</a></li>
+        <li><a href="#/">Мясо, птицы</a></li>
+        <li><a href="#/">Мясные изделия</a></li>
+        <li><a href="#/">Чай, кофе и какао</a></li>
+        <li><a href="#/">Бакалея</a></li>
+        <li><a href="#/">Чипсы, снеки и орешки</a></li>
+        <li><a href="#/">Полуфабрикаты</a></li>
+        <li><a href="#/">Паназиатская кухня</a></li>
+      </ul>
+
+
+
+      <ul id="categoty-19" class="list-unstyled components">
+        <li><a href="#/">Водка</a></li>
+        <li><a href="#/">Коньки</a></li>
+        <li><a href="#/">Вермуты</a></li>
+        <li><a href="#/">Игристые вина</a></li>
+        <li><a href="#/">Вино</a></li>
+        <li><a href="#/">Пиво</a></li>
+        <li><a href="#/">Сидр</a></li>
+        <li><a href="#/">Вермуты</a></li>
+        <li><a href="#/">Коктейли</a></li>
+
+      </ul>
+
+
+
+      <ul id="categoty-20" class="list-unstyled components">
+        <li><a href="#/">Зажигалки</a></li>
+        <li><a href="#/">Сигареты</a></li>
+        <li><a href="#/">Сигары</a></li>
+        <li><a href="#/">Сигариллы</a></li>
+        <li><a href="#/">Вэйпы</a></li>
+      </ul>
+
+      <ul id="categoty-21" class="list-unstyled components">
+        <li><a href="#/">Чековая лента и ролики</a></li>
+        <li><a href="#/">Этикетки и оборудование для маркировки</a></li>
+        <li><a href="#/">Кассовое оборудование</a></li>
+        <li><a href="#/">Перфорированная бумага для принтеров</a></li>
+        <li><a href="#/">Счетчики и детекторы банкнот</a></li>
+        <li><a href="#/">Противоправное оборудование и аксессуары</a></li>
+        <li><a href="#/">Пакеты</a></li>
+        <li><a href="#/">Ценники ценникодержатели</a></li>
+        <li><a href="#/">Весы торговые</a></li>
+        <li><a href="#/">Инкасация и опломбирование</a></li>
+      </ul>
+
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+
+      <header class="box-shadow-sm">
+        <div class="topbar topbar-dark bg-dark">
+          <div class="container">
+            <div class="topbar-text text-nowrap d-none d-md-inline-block"><a class="topbar-link col-cm" href="{% url 'rates' %}">Тарифы</a></div>
+            <div class="topbar-text-center"><a class="topbar-link col-cm" href="{% url 'home' %}">TRADE</a></div>
+            <div class="topbar-text disable-autohide"><a class="topbar-link col-cm" href="{% url 'help' %}">Тех.поддержка</a></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="conteiner">
+        {% block content %}
+        {% endblock %}
+      </div>
+
+      <!-- футер -->
+      <div class="navbar-fixed-bottom d-flex flex-column min-vh-100" id="layoutDefault_footer">
+        <footer class="footer pt-5 pb-5 mt-auto bg-dark footer-light">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="footer-brand">TRADE</div>
+                <div class="icon-list-social mb-5">
+                  <a class="icon-list-social-link" href="#!"><i class="fab fa-instagram"></i></a><a class="icon-list-social-link" href="#!"><i class="fab fa-facebook"></i></a><a class="icon-list-social-link" href="#!"><i
+                      class="fab fa-twitter"></i></a>
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <div class="row text-center">
+                  <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <a class="text-uppercase-expanded text-xs mb-4" href="#Home">...</a>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <a class="text-uppercase-expanded text-xs mb-4" href="#FEATURES">...</a>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                    <a class="text-uppercase-expanded text-xs mb-4" href="#Reviews">...</a>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6">
+                    <a class="text-uppercase-expanded text-xs mb-4" href="/">...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div> <!-- /#content -->
+    </div> <!--  /#wrapper  -->
+
+    <div class="overlay"></div>
+  </div> <!--  /wrapper  -->
+
+  <!-- Всплывающие окна -->
+  <!-- Выход -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Стоп!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Вы уверены, что хотите выйти?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Остаться</button>
+          <button type="button" class="btn btn-primary"><a href="{% url 'home' %}">Выйти из аккаунта</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- вход -->
+
+  <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <ul class="nav nav-tabs card-header-tabs" role="tablist">
+            <li class="nav-item"><a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true">Вход</a></li>
+            <li class="nav-item"><a class="nav-link" href="#signup-tab" data-toggle="tab" role="tab" aria-selected="false">Регистрация</a></li>
+          </ul>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body tab-content py-4">
+          <form method="POST" onsubmit="Site.log_in(this); return false;" class="needs-validation tab-pane fade show active" novalidate id="signin-tab">
+            <!-- <div class="form-group">
+                    <a href="{% url 'login' %}">Вход</a>
+                </div> -->
+            <div class="form-group">
+              <label for="si-email">Email</label>
+              <input class="form-control" type="email" name="email" id="si-email" placeholder="Trade@example.com" required>
+              <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+            <div class="form-group">
+              <label for="si-password">Пароль</label>
+              <div class="password-toggle">
+                <input class="form-control" name="password" type="password" id="password" required>
+                <label class="password-toggle-btn">
+                  <input class="custom-control-input" type="checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                  </svg><span class="sr-only">Show password</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group d-flex flex-wrap justify-content-between">
+              <div class="custom-control custom-checkbox mb-2">
+                <input class="custom-control-input" name="remember_me" type="checkbox" id="remember_me">
+                <label class="custom-control-label" for="si-remember">Запомнить меня</label>
+              </div><a class="font-size-sm" href="#">Забыли пароль?</a>
+            </div>
+            <input value="Вход" class="btn btn-primary btn-block btn-shadow" type="submit">
+          </form>
+          <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+            <div class="form-group">
+              <h6>Как заказчик:</h6>
+              <ul>
+                <li><a href='{% url 'register_z_ind' %}'>Как физ.лицо</a></li>
+                <li><a href='{% url 'register_z_ent' %}'>Как Юр.лицо</a></li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <h6>Как поставщик:</h6>
+              <ul>
+                <li><a href='{% url 'register_p_ind' %}'>Как физ.лицо</a></li>
+                <li><a href='{% url 'register_p_ent' %}'>Как Юр.лицо</a></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- для сообщений -->
+  <div class="modal fade" id="email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Новое сообщение</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Получатель:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Сообщение:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="btn btn-primary">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- без регистрации -->
+  <div class="modal fade" id="ups" tabindex="-1" aria-labelledby="ups" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ups">Упс...</h5>
+        </div>
+        <div class="modal-body">
+          <h6>Вы не авторизировались!</h6>
+          <h7><a href="#signin-modal" data-toggle="modal" data-target="#signin-modal" data-dismiss="modal">Войдите</a> или <a href="#signin-modal" data-toggle="modal" data-target="#signin-modal" data-dismiss="modal">зарегистрируйтесь</a></h7>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- как учавствовать в торгах -->
+  <div class="modal fade" id="rates" tabindex="-1" aria-labelledby="rates" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rates">Как учавствовать в "Торгах"?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+          <h6>"Торги" работают как чат.</h6>
+          <h6>Вы можете написать свою потребность и все пользователи ее увидят и смогут сделать вам коммерческое предложение.</h6>
+          <h6>Так же вы можете читать потребности других пользователей и выбирать интересующие вас заказы и находить таким образом клиентов.</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Как найти поставщика -->
+
+  <div class="modal fade" id="provider" tabindex="-1" aria-labelledby="provider" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="provider">Как найти поставщика?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <h6>С помощью строки поиск вы можете найти интересующий вас товар.</h6>
+          <h6>Когда вы зайдете в интересующий вас товар, вам откроется список поставщиков которые поставляют данный товар.</h6>
+          <h6>В этом списке вы можете подобрать оптимального для себя поставщика.</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Как найти покупателя -->
+  <div class="modal fade" id="buyer" tabindex="-1" aria-labelledby="buyer" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="buyer">Как найти покупателя?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <h6>Вы заполняете нашу спецификацию, а мы загружаем списки с вашими товарами на нашей площадке.</h6>
+          <h6>И когда кто-то из покупателей в своей потребности укажет товар имеющийся в вашем ассортименте - вы получите уведомление о том кто, имеет потребность в вашем товаре и вы сможете сделать свое предложение потенциальному клиенту.</h6>
+          <h6>Так же в общем списке товаров вы будете закреплены как поставщик за своими товарами.</h6>
+          <h6>То есть когда потенциальный покупатель выберет в списке товар имеющийся в вашем ассортименте, вы будите с списке поставщиков данного товара.</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- main js file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+  <script src="{% static "js/main.js" %}"></script>
+</body>
+
+</html>

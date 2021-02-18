@@ -1,0 +1,156 @@
+.wrapper {
+    display: block;
+}
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.sidebar {
+  min-width: 350px;
+  max-width: 350px;
+  margin-left: -350px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+}
+
+#sidebar-2 {
+  z-index: 998;
+  background-color: #333740;
+}
+
+#sidebar.active {
+    margin-left: 0;
+    transition: all 0.3s;
+}
+
+#sidebar-2.active {
+    margin-left: 350px;
+    transition: all 0.3s;
+}
+
+#sidebar-2 ul {
+  display: none;
+}
+
+#sidebar-2 ul.active {
+  display: inherit;
+}
+
+#sidebar-2 h4 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 280px;
+  overflow: hidden;
+}
+
+.sidebar.active .close {
+  position: fixed;
+  left: 285px;
+  top: 50px;
+  z-index: 999;
+}
+
+#sidebar-2.active .close {
+  left: 650px;
+  display: none;
+}
+
+.sidebar.active li.active ul {
+  position: absolute;
+  right: -100%;
+  min-width: 350px;
+  height: 100vh;
+}
+
+.sidebar .sidebar-header {
+    padding: 20px;
+}
+
+.sidebar ul.components {
+    padding: 20px 0;
+}
+
+.sidebar ul p {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    padding: 10px;
+    padding-left: 20px;
+    display: block;
+}
+
+
+ul ul a {
+    padding-left: 30px !important;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 997;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+    top: 0;
+    left: 0;
+}
+
+.category li a {
+  color: #ffffff;
+}
+
+
+
+@media (max-width: 768px) {
+    .sidebar.active {
+      min-width: 100%;
+    }
+    .sidebar.active .close {
+      left: inherit;
+      right: 20px;
+    }
+
+    #sidebar-2.active {
+        margin-left: 0;
+        z-index: 1000;
+    }
+
+    #sidebar-2.active .close {
+      left: inherit;
+      right: 20px;
+      z-index: 1001;
+      display: inherit;
+    }
+
+    #top-help {
+      text-align: right;
+    }
+
+
+}

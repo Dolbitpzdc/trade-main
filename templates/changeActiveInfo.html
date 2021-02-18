@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+
+{% block sidebar %}
+{{block.super}}
+<div>
+  ID: {{ user.0 }}<br>
+  Ф.И.О: {{ user.2 }} {{ user.1 }} {{ user.3 }}<br>
+  Номер телефона: {{ user.9 }}<br>
+  Описание: {{ user.14 }}<br><br>
+
+  Статус аккаунта:
+  {% if user_basic.8 == 1 %}
+    Активен <a href="/admin/deactiveUser/?id={{ user_basic.0 }}">(Деактивировать)</a>
+  {% else %}
+    Деактивирован <a href="/admin/activeUser/?id={{ user_basic.0 }}">(Активировать)</a>
+  {% endif %}
+
+</div>
+{% endblock %}

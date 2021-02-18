@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+  <div class="navbar bg-light">
+    <div class="navbar navbar-expand-lg navbar-light col">
+      <div class="container">
+        <svg width="3em" height="3em" viewBox="0 0 16 16" id="" class="bi bi-list sidebarCollapse" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right: 1em; cursor: pointer;">
+          <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
+        <div class="text-center">
+          <h3 style="margin: 0;">Trade</h3>
+        </div>
+        <div class="input-group-overlay d-none d-lg-flex mx-4">
+          <input class="form-control appended-form-control" type="text" placeholder="Search for products">
+          <div class="input-group-append-overlay"><span class="input-group-text"><i class="search"></i></span></div>
+        </div>
+        <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+          <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#signin-modal" style="cursor: pointer;">
+              <path fill-rule="evenodd"  d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+            </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+    <br><br><br><br><br>
+    <main class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <button type="button" class="w-100 btn btn-lg btn-dark" data-toggle="modal" data-target="#ups">Торги</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <button type="button" class="w-100 btn btn-lg btn-dark" data-toggle="modal" data-target="#ups">Купить</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <button type="button" class="w-100 btn btn-lg btn-dark" data-toggle="modal" data-target="#ups">Продать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <br><br><br><br><br><br><br><br>
+    <div class="container">
+      <div class="text">
+        <h3>Как это работает?<h3>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+          <h2>1</h2>
+          <p>Заказчик размещает свою потребность</p>
+
+        </div>
+        <div class="col-md-4">
+          <h2>2</h2>
+          <p>Поставщики данных товаров получают уведомление о потребности потенциального клиента</p>
+
+        </div>
+        <div class="col-md-4">
+          <h2>3</h2>
+          <p> Заказчик получает предложения от поставщиков и выбирает оптимальное</p>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

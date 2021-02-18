@@ -1,0 +1,52 @@
+<title>Мененджер аккаунтов</title>
+{% extends "admin/base.html" %}
+
+{% block sidebar %}
+{{block.super}}
+<div>
+  <table style="width:100%">
+    <tr>
+      <th>Имя пользователя</th>
+      <th>Активен ли?</th>
+      <th>Ф.И.О.</th>
+      <th></th>
+    </tr>
+  {% for user in users %}
+    <tr>
+      <td><a href="/admin/changeActive/{{ user.0 }}/">{{ user.4 }}</a></td>
+      {% if user.8 == 1 %}
+        <td>Активен <a href="/admin/deactiveUser/?id={{ user.0 }}">(Деактивировать)</a></td>
+      {% else %}
+        <td>Деактивирован <a href="/admin/activeUser/?id={{ user.0 }}">(Активировать)</a></td>
+      {% endif %}
+
+
+        {% for user_abi in abi_users %}
+          {% if user_abi.15 == user.0 %}
+            <td>{{ user_abi.2 }} {{ user_abi.1 }} {{ user_abi.3 }}</td>
+          {% endif %}
+        {% endfor %}
+
+      <!-- {% if user.8 == 1 %}
+        <td><a href="/admin/deactiveUser/?id={{ user.0 }}">Деактивировать</button></td>
+      {% else %}
+        <td><a href="/admin/activeUser/?id={{ user.0 }}">Активировать</button></td>
+      {% endif %} -->
+
+
+    </tr>
+  {% endfor %}
+  </table>
+
+  <!-- <table style="width:100%">
+    <tr>
+      <th>Ф.И.О.</th>
+    </tr>
+  {% for user in abi_users %}
+    <tr>
+      <td>{{ user.2 }} {{ user.1 }} {{ user.3 }}</td>
+    </tr>
+  {% endfor %}
+  </table> -->
+</div>
+{% endblock %}

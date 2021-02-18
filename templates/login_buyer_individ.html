@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <header class="w-100 p-3">
+        <form method="POST" onsubmit="Site.registration(this, 'lbi'); return false;">
+          <br>
+          <h6>Ф.И.О</h6>
+
+          <div class="form-row">
+            <div class="col">
+              <input type="text" name="last_name" class="form-control" placeholder="Фамилия">
+            </div>
+            <div class="col">
+              <input type="text" name="first_name" class="form-control" placeholder="Имя">
+            </div>
+            <div class="col">
+              <input type="text" name="middle_name" class="form-control" placeholder="Отчество">
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col">
+              <h6>Вид деятельонсти</h6>
+              <select class="custom-select mr-sm-2" name="kind_of_activity" id="inlineFormCustomSelect">
+                <option value="0" selected>Выберите...</option>
+                <option value="1">Дистрибьюция</option>
+                <option value="2">Розничная торговля</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <h6>Плательщик ли НДС?</h6>
+              <select class="custom-select mr-sm-2" name="VAT_payer" id="inlineFormCustomSelect">
+                <option value="0" selected>Выберите...</option>
+                <option value="1">Да</option>
+                <option value="2">Нет</option>
+              </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+      <div class="form-group col-md-6">
+        <h6>Кол-во торговых точек</h6>
+        <input type="text" name="count_of_outlets" class="form-control" id="sv" placeholder="">
+        </div>
+        <div class="form-group col-md-6">
+        <h6>Торговая площадь</h6>
+        <input type="text" name="trading_area" class="form-control" id="sv" placeholder="">
+
+      </div>
+        </div>
+
+        <br>
+        <h6>Фактический адрес</h6>
+        <div class="form-row">
+          <div class="col-7">
+            <input type="text" name="address_1" class="form-control" placeholder="Город">
+          </div>
+          <div class="col">
+            <input type="text" name="address_2" class="form-control" placeholder="Улица">
+          </div>
+          <div class="col">
+            <input type="text" name="address_3" class="form-control" placeholder="Дом">
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h6>Email</h6>
+            <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <h6>Телефон</h6>
+            <input type="Phone" name="phone" class="form-control" id="inputPhone" placeholder="Телефон">
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+        <div class="col">
+          <h6>Доставка</h6>
+          <select class="custom-select mr-sm-2" name="delivery" id="inlineFormCustomSelect">
+            <option value="0" selected>Выберите...</option>
+            <option value="1">Транспортная компания</option>
+            <option value="2">Автопарк компании</option>
+            <option value="3">Самовывоз</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <h6>Отсрочка платежа</h6>
+          <select class="custom-select mr-sm-2" name="deferment_of_payment" id="inlineFormCustomSelect">
+            <option value="0" selected>Выберите...</option>
+            <option value="1">Да</option>
+            <option value="2">Нет</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+        <h6>№ Свидетельства о поставлении на учет</h6>
+        <input type="text" name="certificate_of_registration" class="form-control" id="sv" placeholder="">
+          </div>
+        <div class="form-group col-md-6">
+          <h6>Форма оплаты</h6>
+          <select name="payment_form" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option value="0" selected>Выберите...</option>
+            <option value="1">Первичная(без нал)</option>
+            <option value="2">Вторичная(нал нал)</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+      <div class="col">
+        <h6>Краткое описаные</h6>
+        <input type="text" name="short_desc" class="form-control" placeholder="">
+      </div>
+      </div>
+      <br>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Запомнить устройсто
+              </label>
+            </div>
+          </div>
+          <input type="submit" value="Зарегистрироваться" class="btn btn-primary">
+        </form>
+  </header>
+{% endblock %}
