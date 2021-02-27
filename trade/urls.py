@@ -23,12 +23,25 @@ from django.urls import include
 admin.autodiscover()
 
 urlpatterns = [
-    path('admin/changeActive/', views.changeActive, name='users_activ_deactiv'),
-    path('admin/changeActive/<id_user>/', views.changeActiveInfo, name='users_activ_deactiv_info'),
+    # path('admin/changeActive/', views.changeActive, name='users_activ_deactiv'),
+    # path('admin/changeActive/<id_user>/', views.changeActiveInfo, name='users_activ_deactiv_info'),
+
+
+    path('admin/', views.moderViews, name='homeAdmin'),
+    path('admin/form/', views.moderForms, name='form-common'),
+    path('admin/new/person/', views.charts, name='charts'),
+    path('admin/tables/', views.tables, name='tables'),
+    path('admin/grid/', views.grid, name='grid'),
+    path('admin/buttons/', views.buttons, name='buttons'),
+    path('admin/interface/', views.interface, name='interface'),
+    path('admin/error/', views.error, name='error'),
+    path('admin/calendar/', views.calendar, name='calendar'),
     path('admin/activeUser/', views.activeUser),
     path('admin/deactiveUser/', views.deactiveUser),
+    path('admin/login/', views.loginAdmin, name='loginAdmin'),
+    path('admin/chat/', views.chat, name='chat'),
 
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('login/provider/individ/', views.register_p_ind, name='register_p_ind'),
     path('login/provider/entity/', views.register_p_ent, name='register_p_ent'),

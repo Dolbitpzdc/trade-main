@@ -45,6 +45,28 @@ $(document).ready(function() {
     }
   });
 
+  $('.overlay').on('click', function(e) {
+    let $sidebar = $(this).closest('.sidebar');
+    $sidebar.removeClass('active');
+    $('#sidebar-2 ul').removeClass('active');
+
+      $('.overlay').toggleClass('active');
+      $('#sidebar').removeClass('active');
+      $('#sidebar-2').removeClass('active');
+  });
+
+  $(document).keyup(function(e) {
+     if (e.key === "Escape") { // escape key maps to keycode `27`
+       let $sidebar = $(this).closest('.sidebar');
+       $sidebar.removeClass('active');
+       $('#sidebar-2 ul').removeClass('active');
+
+         $('.overlay').toggleClass('active');
+         $('#sidebar').removeClass('active');
+         $('#sidebar-2').removeClass('active');
+    }
+});
+
   $('#sidebar li a').on('click', function(e) {
 
     // убираем все активные сабменю
@@ -194,6 +216,24 @@ Site.registration = function(form, type) {
         success: function(response) {
           console.log(response)
           location.href = "/home"
+        },
+        error: function(error) {
+          toastr["error"](error.responseJSON.error)
+        }
+      });
+    break;
+
+    case "np":
+      $.ajax({
+        url: "/api/registration/new_person/",
+        method: "POST",
+        data: {
+          csrfmiddlewaretoken: Site.getCookie('csrftoken'),
+          data: $(form).serialize(),
+        },
+        success: function(response) {
+          console.log(response)
+          location.href = "/admin"
         },
         error: function(error) {
           toastr["error"](error.responseJSON.error)

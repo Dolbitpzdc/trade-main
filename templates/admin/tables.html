@@ -1,0 +1,197 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div id="content">
+  <div class="container-fluid">
+    <hr>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Покупатели(Физ.лица)</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Имя пользователя</th>
+                  <th>Активен ли?</th>
+                  <th>Ф.И.О.</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in abi_users %} <!-- цикл -->
+                  <tr class="gradeX">
+                    <td>
+                      {% for user1 in users %}
+                      {% if user1.0 == user.15 %}
+                      {{ user1.4 }}
+                      {% endif %}
+                      {% endfor %}
+                    </td>
+                    {% if user.8 == 1 %}
+                      <td>Активен <a href="/admin/deactiveUser/?id={{ user1.0 }}">(Деактивировать)</a></td>
+                    {% else %}
+                      <td>Деактивирован <a href="/admin/activeUser/?id={{ user1.0 }}">(Активировать)</a></td>
+                    {% endif %}
+
+                      <td>{{ user.2 }} {{ user.1 }} {{ user.3 }}</td>
+
+                    <!-- {% if user.8 == 1 %}
+                      <td><a href="/admin/deactiveUser/?id={{ user.0 }}">Деактивировать</button></td>
+                    {% else %}
+                      <td><a href="/admin/activeUser/?id={{ user.0 }}">Активировать</button></td>
+                    {% endif %} -->
+
+
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <hr>
+            <div class="widget-box">
+              <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                <h5>Покупатели(Юр.лица)</h5>
+              </div>
+              <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                  <thead>
+                    <tr>
+                      <th>Имя пользователя</th>
+                      <th>Активен ли?</th>
+                      <th>Ф.И.О.</th>
+                      <th>Должность</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in abe_users %} <!-- цикл -->
+                      <tr class="gradeX">
+
+                          {% for user1 in users %}
+                          {% if user1.0 == user.14 %}
+                          <td>{{ user1.4 }}</td>
+                          {% if user1.8 == 1 %}
+                            <td>Активен <a href="/admin/deactiveUser/?id={{ user1.0 }}">(Деактивировать)</a></td>
+                          {% else %}
+                            <td>Деактивирован <a href="/admin/activeUser/?id={{ user1.0 }}">(Активировать)</a></td>
+                          {% endif %}
+                          {% endif %}
+                          {% endfor %}
+
+
+
+                          <td>{{ user.3 }} {{ user.2 }} {{ user.4 }}</td>
+
+                          <td>{{ user.5 }}</td>
+
+
+                      </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid">
+            <hr>
+                <div class="widget-box">
+                  <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                    <h5>Поставщики(Физ.лица)</h5>
+                  </div>
+                  <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table">
+                      <thead>
+                        <tr>
+                          <th>Имя пользователя</th>
+                          <th>Активен ли?</th>
+                          <th>Ф.И.О.</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for user in api_users %} <!-- цикл -->
+                          <tr class="gradeX">
+                            <td>
+                              {% for user1 in users %}
+                              {% if user1.0 == user.15 %}
+                              {{ user1.4 }}
+                              {% endif %}
+                              {% endfor %}
+                            </td>
+                            {% if user.8 == 1 %}
+                              <td>Активен <a href="/admin/deactiveUser/?id={{ user1.0 }}">(Деактивировать)</a></td>
+                            {% else %}
+                              <td>Деактивирован <a href="/admin/activeUser/?id={{ user1.0}}">(Активировать)</a></td>
+                            {% endif %}
+
+                              <td>{{ user.2 }} {{ user.1 }} {{ user.3 }}</td>
+
+
+                          </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="container-fluid">
+                <hr>
+                    <div class="widget-box">
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>Поставщики(Юр.лица)</h5>
+                      </div>
+                      <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                          <thead>
+                            <tr>
+                              <th>Имя пользователя</th>
+                              <th>Активен ли?</th>
+                              <th>Ф.И.О.</th>
+                              <th>Должность</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                            {% for user in ape_users %} <!-- цикл -->
+                              <tr class="gradeX">
+
+                                  {% for user1 in users %}
+                                  {% if user1.0 == user.21 %}
+                                  <td>{{ user1.4 }}</td>
+                                  {% if user1.8 == 1 %}
+                                    <td>Активен <a href="/admin/deactiveUser/?id={{ user1.0 }}">(Деактивировать)</a></td>
+                                  {% else %}
+                                    <td>Деактивирован <a href="/admin/activeUser/?id={{ user1.0 }}">(Активировать)</a></td>
+                                  {% endif %}
+                                  {% endif %}
+                                  {% endfor %}
+
+
+
+                                  <td>{{ user.3 }} {{ user.2 }} {{ user.4 }}</td>
+
+                                  <td>{{ user.5 }}</td>
+
+
+                              </tr>
+                            {% endfor %}
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+<br><br><br><br><br><br><br><br>
+    </div>
+
+
+{% endblock %}

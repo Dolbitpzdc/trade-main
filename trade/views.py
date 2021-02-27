@@ -13,32 +13,122 @@ import sqlite3
 from django.contrib.auth import authenticate, login
 import urllib
 
+
+def moderViews(request):
+    return render(request, 'admin/homeAdmin.html')
+
+def moderForms(request):
+    return render(request, 'admin/form-common.html')
+
+def chat(request):
+    return  render(request, 'admin/chat.html')
+
+def charts(request):
+    conn = sqlite3.connect('db.sqlite3')
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM auth_user ")
+    users = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
+    accounts_buyer_individ = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
+    accounts_buyer_entity = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_provider_individ") #выгрузка данных из таблицы accounts_provider_individ
+    accounts_provider_individ = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_provider_entity") #выгрузка данных из таблицы accounts_provider_entity
+    accounts_provider_entity = cur.fetchall()
+
+    conn.close()
+
+    return render(request, 'admin/charts.html', {'abi_users': accounts_buyer_individ,'abe_users': accounts_buyer_entity, 'api_users': accounts_provider_individ, 'ape_users': accounts_provider_entity, 'users': users})
+
+def tables(request):
+    conn = sqlite3.connect('db.sqlite3')
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
+    accounts_buyer_individ = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
+    accounts_buyer_entity = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_provider_individ") #выгрузка данных из таблицы accounts_provider_individ
+    accounts_provider_individ = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_provider_entity") #выгрузка данных из таблицы accounts_provider_entity
+    accounts_provider_entity = cur.fetchall()
+
+    cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
+    users = cur.fetchall() #выгрузка данных в переменную
+
+    conn.close()
+
+    return render(request, 'admin/tables.html', {'abi_users': accounts_buyer_individ,'abe_users': accounts_buyer_entity, 'api_users': accounts_provider_individ, 'ape_users': accounts_provider_entity, 'users': users})
+
+
+def grid(request):
+    conn = sqlite3.connect('db.sqlite3')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
+    accounts_buyer_entity = cur.fetchall()
+
+    cur.execute("SELECT * FROM accounts_provider_entity ") #выгрузка данных из таблицы accounts_provider_entity
+    accounts_provider_entity  = cur.fetchall()
+
+
+    cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
+    users = cur.fetchall() #выгрузка данных в переменную
+
+    conn.close()
+
+    return render(request, 'admin/grid.html', {'abi_users': accounts_buyer_entity,'ape_users': accounts_provider_entity , 'users': users})
+
+
+def buttons(request):
+    return render(request, 'admin/buttons.html')
+
+def interface(request):
+    return render(request, 'admin/interface.html')
+
+def calendar(request):
+    return render(request, 'admin/calendar.html')
+
+def error(request):
+    return render(request, 'admin/error404.html')
+
+def loginAdmin(request):
+    return render(request, 'admin/login.html')
+
 def activeUser(request):
     conn = sqlite3.connect('db.sqlite3')
     cur = conn.cursor()
-    cur.execute("UPDATE auth_user SET is_active=1 WHERE id=?", request.GET.get("id", "0"))
+    cur.execute("UPDATE auth_user SET is_active=1 WHERE id=?", [request.GET.get("id", "0")]) #оьновить данные в таблице auth_user поле is_active  равному единице где id  равен чему-то
 
     conn.commit()
     conn.close()
-    return redirect("users_activ_deactiv")
+    return redirect("tables")
 
 def deactiveUser(request):
     conn = sqlite3.connect('db.sqlite3')
     cur = conn.cursor()
-    cur.execute("UPDATE auth_user SET is_active=0 WHERE id=?", request.GET.get("id", "0"))
+    cur.execute("UPDATE auth_user SET is_active=0 WHERE id=?", [request.GET.get("id", "0")]) #оьновить данные в таблице auth_user поле is_active равному нулю где id  равен чему-то
 
-    conn.commit()
-    conn.close()
-    return redirect("users_activ_deactiv")
+    conn.commit() #сохранение данных
+    conn.close() #закрытие соединения
+    return redirect("tables")
 
 def changeActive(request):
     conn = sqlite3.connect('db.sqlite3')
     cur = conn.cursor()
-    cur.execute("SELECT * FROM accounts_buyer_individ")
+    cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
     accounts_buyer_individ = cur.fetchall()
 
-    cur.execute("SELECT * FROM auth_user")
-    users = cur.fetchall()
+    cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
+    users = cur.fetchall() #выгрузка данных в переменную
 
     conn.close()
 
@@ -50,7 +140,8 @@ def changeActiveInfo(request, id_user="0"):
     else:
         conn = sqlite3.connect('db.sqlite3')
         cur = conn.cursor()
-        cur.execute("SELECT * FROM accounts_buyer_individ WHERE user_id=?", id_user)
+
+        cur.execute("SELECT * FROM accounts_buyer_individ WHERE user_id=?", id_user) #выгрузка данных из таблицы accounts_buyer_individ где user_id равен чему-то
         account_buyer_individ = cur.fetchall()
 
         if len(account_buyer_individ) == 0:
@@ -238,8 +329,33 @@ def registration(request, type_reg="undefined"):
                 # else:
                 #     return JsonResponse({'error': "Заполните все поля, это привлечёт больше клиентов.", "code": 400}, status=400)
 
+
+            elif type_reg == "new_person":
+                data = urllib.parse.parse_qs(request.POST.get("data", ""))
+                need_keys = ["last_name", "first_name", "middle_name",  "email", "password"]
+
+                # if check_keys(need_keys, data):
+                user = User.objects.create_user(username=data["email"][0],email=data["email"][0], password='glass onion')
+                user.save()
+
+                profile = new_person()
+                profile.user = user
+                profile.first_name = data["first_name"][0]
+                profile.last_name = data["last_name"][0]
+                profile.middle_name = data["middle_name"][0]
+                profile.password = data["password"][0]
+
+                profile.save()
+
+
+                return JsonResponse({'response': "Регистрация прошла успешно! Ожидайте подтверждение администратора", "code": 200}, status=200)
+
+                # else:
+                #     return JsonResponse({'error': "Заполните все поля, это привлечёт больше клиентов.", "code": 400}, status=400)
+
             else:
                 return JsonResponse({'error': "Неизвестный тип регистрации", "code": 400}, status=400)
+
 
 
         else:

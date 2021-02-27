@@ -1,0 +1,40 @@
+{% extends 'admin/base.html' %}
+
+
+{% block content %}
+
+
+
+
+
+<div id="content">
+
+  <div class="container-fluid">
+    <div class="quick-actions_homepage">
+      <ul class="quick-actions">
+        <li class="bg_lb"> <a href="{%  url 'homeAdmin' %}"> <i class="icon-dashboard"></i> <span class="label label-important">20</span> Главная </a> </li>
+        <li class="bg_lo"> <a href="{% url 'tables' %}"> <i class="icon-group"></i>Пользователи</a> </li>
+        <li class="bg_lg"> <a href="{% url 'charts' %}"> <i class="icon-credit-card"></i>Данные об оплате</a></li>
+        <li class="bg_ls"> <a href="{% url 'grid' %}"> <i class=" icon-truck"></i>Зарегистрировать фирму</a></li>
+        <li class="bg_lo"> <a href="{% url 'form-common' %}"> <i class="icon-plus"></i>Добавить нового сотрудника</a> </li>
+        <li class="bg_lb"> <a href="{% url 'interface' %}"> <i class="icon-envelope-alt"></i>Отправка сообщений пользователю</a> </li>
+        <li class="bg_lg"> <a href="{% url 'calendar' %}"> <i class="icon-comment"></i>Сообщения админу</a> </li>
+        <li class="bg_lr"> <a href="{% url 'error' %}"> <i class="icon-info-sign"></i>Жалобы</a> </li>
+
+      </ul>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+</div>
+<!--End-Action boxes-->
+
+
+
+
+
+
+{% endblock %}

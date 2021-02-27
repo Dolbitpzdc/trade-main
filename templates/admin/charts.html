@@ -1,0 +1,69 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div id="content">
+  <div class="container-fluid">
+    <hr>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Данные пользователей об оплате</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Имя пользователя</th>
+
+                  <th>Тариф</th>
+                  <th>Действителен до</th>
+                  <th>Ф.И.О.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+              <tr>
+                <td><a href="/admin/changeActive/{{ user.0 }}/">{{ user.4 }}</a></td>
+
+                <td>Основной</td>
+                <td>12.01.2021</td>
+
+
+                  {% for user1 in abi_users %}
+                    {% if user1.15 == user.0 %}
+                      <td>{{ user1.2 }} {{ user1.1 }} {{ user1.3 }}</td>
+                      {% endif %}
+                  {% endfor %}
+
+                  {% for user2 in abe_users %}
+                    {% if user2.14 == user.0 %}
+                      <td>{{ user2.3 }} {{ user2.2 }} {{ user2.4 }}</td>
+                      {% endif %}
+                  {% endfor %}
+
+                  {% for user3 in api_users %}
+                    {% if user3.15 == user.0 %}
+                      <td>{{ user3.2 }} {{ user3.1 }} {{ user3.3 }}</td>
+                      {% endif %}
+                  {% endfor %}
+
+                  {% for user4 in ape_users %}
+                    {% if user4.21 == user.0 %}
+                    <td>{{ user4.3 }} {{ user4.2 }} {{ user4.4 }}</td>
+                    {% endif %}
+                  {% endfor %}
+
+
+
+                  </tr>
+                  {% endfor %}
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+{% endblock %}

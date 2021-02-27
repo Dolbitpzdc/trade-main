@@ -136,6 +136,6 @@ def notify_admin(sender, instance, created, **kwargs):
        message = 'User %s was added' % instance.username
        from_addr = None
        recipient_list = ('biwuxqpolp33.org@gmail.com')
-       send_mail(subject, message, from_addr, recipient_list)
+       # send_mail(subject, message, from_addr, recipient_list)
 
 signals.post_save.connect(notify_admin, sender=User)

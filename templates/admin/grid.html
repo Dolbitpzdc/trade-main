@@ -1,0 +1,116 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div id="content">
+  <div class="container-fluid">
+    <hr>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Список фирм покупателей</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Название</th>
+                  <th>Активация</th>
+                  <th>Кто представлет</th>
+                  <th>Должность</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in abi_users %} <!-- цикл -->
+                  <tr class="gradeX">
+                    <td><a href="/admin/changeActive/{{ user.0 }}/">{{ user.1 }}</a></td>
+
+                    {% if user.8 == 1 %}
+                      <td>Активен <a href="/admin/deactiveUser/?id={{ user.0 }}">(Деактивировать)</a></td>
+                    {% else %}
+                      <td>Деактивирован <a href="/admin/activeUser/?id={{ user.0 }}">(Активировать)</a></td>
+                    {% endif %}
+
+
+                      {% for user_abi in users %}
+                        {% if user.14 == user_abi.0 %}
+                          <td>{{ user.3 }} {{ user.2 }} {{ user.4 }}</td>
+                        {% endif %}
+                      {% endfor %}
+
+                      <td>{{ user.5 }}</td>
+
+                    <!-- {% if user.8 == 1 %}
+                      <td><a href="/admin/deactiveUser/?id={{ user.0 }}">Деактивировать</button></td>
+                    {% else %}
+                      <td><a href="/admin/activeUser/?id={{ user.0 }}">Активировать</button></td>
+                    {% endif %} -->
+
+
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <hr>
+            <div class="widget-box">
+              <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                <h5>Список фирм поставщиков</h5>
+              </div>
+              <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                  <thead>
+                    <tr>
+                      <th>Название</th>
+                      <th>Активация</th>
+                      <th>Кто представлет</th>
+                      <th>Должность</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in ape_users %} <!-- цикл -->
+                      <tr class="gradeX">
+                        <td><a href="/admin/changeActive/{{ user.0 }}/">{{ user.1 }}</a></td>
+
+                        {% if user.8 == 1 %}
+                          <td>Активен <a href="/admin/deactiveUser/?id={{ user.0 }}">(Деактивировать)</a></td>
+                        {% else %}
+                          <td>Деактивирован <a href="/admin/activeUser/?id={{ user.0 }}">(Активировать)</a></td>
+                        {% endif %}
+
+
+                          {% for user_ape in users %}
+                            {% if user.21 == user_ape.0 %}
+                              <td>{{ user.3 }} {{ user.2 }} {{ user.4 }}</td>
+                            {% endif %}
+                          {% endfor %}
+
+                          <td>{{ user.5 }}</td>
+
+                        <!-- {% if user.8 == 1 %}
+                          <td><a href="/admin/deactiveUser/?id={{ user.0 }}">Деактивировать</button></td>
+                        {% else %}
+                          <td><a href="/admin/activeUser/?id={{ user.0 }}">Активировать</button></td>
+                        {% endif %} -->
+
+
+                      </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+
+
+
+{% endblock %}

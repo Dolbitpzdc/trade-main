@@ -1,0 +1,57 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div id="content">
+
+<div class="container">
+  <hr>
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Новый сотрудик</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" onsubmit='Site.registration(this, "np"); return false;' class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Имя :</label>
+              <div class="controls">
+                <input name="first_name" type="text" class="span11" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Фамилия :</label>
+              <div class="controls">
+                <input name="last_name" type="text" class="span11" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Отчество :</label>
+              <div class="controls">
+                <input name="middle_name" type="text" class="span11" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">E-mail :</label>
+              <div class="controls">
+                <input name="email" type="text" class="span11" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Пароль</label>
+              <div class="controls">
+                <input name="password" type="password"  class="span11" placeholder="Enter Password"  />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      </div>>
+{% endblock %}
