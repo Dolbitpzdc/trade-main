@@ -142,6 +142,42 @@ Site.log_in = function(form) {
 
 }
 
+Site.newReview = function(form) {
+  $.ajax({
+    url: "/api/NewReview/",
+    method: "POST",
+    data: {
+      csrfmiddlewaretoken: Site.getCookie('csrftoken'),
+      data: $(form).serialize(),
+    },
+    success: function(response) {
+      toastr["success"](response.response)
+    },
+    error: function(error) {
+      toastr["error"](error.responseJSON.error)
+    }
+
+  });
+}
+
+Site.PymentDetail = function(form) {
+  $.ajax({
+    url: "/api/PymentDetail/",
+    method: "POST",
+    data: {
+      csrfmiddlewaretoken: Site.getCookie('csrftoken'),
+      data: $(form).serialize(),
+    },
+    success: function(response) {
+      toastr["success"](response.response)
+    },
+    error: function(error) {
+      toastr["error"](error.responseJSON.error)
+    }
+
+  });
+}
+
 Site.registration = function(form, type) {
 
   // if (!Site.formValidation(form)) {
@@ -216,24 +252,6 @@ Site.registration = function(form, type) {
         success: function(response) {
           console.log(response)
           location.href = "/home"
-        },
-        error: function(error) {
-          toastr["error"](error.responseJSON.error)
-        }
-      });
-    break;
-
-    case "np":
-      $.ajax({
-        url: "/api/registration/new_person/",
-        method: "POST",
-        data: {
-          csrfmiddlewaretoken: Site.getCookie('csrftoken'),
-          data: $(form).serialize(),
-        },
-        success: function(response) {
-          console.log(response)
-          location.href = "/admin"
         },
         error: function(error) {
           toastr["error"](error.responseJSON.error)

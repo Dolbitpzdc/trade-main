@@ -15,94 +15,218 @@ import urllib
 
 
 def moderViews(request):
-    return render(request, 'admin/homeAdmin.html')
+    if checkAdmin(request):
+        return render(request, 'admin/homeAdmin.html')
+    else:
+        return redirect("loginAdmin")
 
 def moderForms(request):
-    return render(request, 'admin/form-common.html')
+    if checkAdmin(request):
+        return render(request, 'admin/form-common.html')
+    else:
+        return redirect("loginAdmin")
 
 def chat(request):
-    return  render(request, 'admin/chat.html')
+    if checkAdmin(request):
+        conn = sqlite3.connect('db.sqlite3')
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM auth_user ")
+        users = cur.fetchall()
+
+        conn.close()
+
+        return  render(request, 'admin/chat.html', {'users': users})
+    else:
+        return redirect("loginAdmin")
 
 def charts(request):
-    conn = sqlite3.connect('db.sqlite3')
-    cur = conn.cursor()
+    if checkAdmin(request):
+        conn = sqlite3.connect('db.sqlite3')
+        cur = conn.cursor()
 
-    cur.execute("SELECT * FROM auth_user ")
-    users = cur.fetchall()
+        cur.execute("SELECT * FROM auth_user ")
+        users = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
-    accounts_buyer_individ = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
+        accounts_buyer_individ = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
-    accounts_buyer_entity = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
+        accounts_buyer_entity = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_provider_individ") #выгрузка данных из таблицы accounts_provider_individ
-    accounts_provider_individ = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_provider_individ") #выгрузка данных из таблицы accounts_provider_individ
+        accounts_provider_individ = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_provider_entity") #выгрузка данных из таблицы accounts_provider_entity
-    accounts_provider_entity = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_provider_entity") #выгрузка данных из таблицы accounts_provider_entity
+        accounts_provider_entity = cur.fetchall()
 
-    conn.close()
+        cur.execute("SELECT * FROM accounts_paymentdetails ")
+        accounts_paymentDetail = cur = fetchall()
 
-    return render(request, 'admin/charts.html', {'abi_users': accounts_buyer_individ,'abe_users': accounts_buyer_entity, 'api_users': accounts_provider_individ, 'ape_users': accounts_provider_entity, 'users': users})
+        conn.close()
+
+        return render(request, 'admin/charts.html', {'abi_users': accounts_buyer_individ,'abe_users': accounts_buyer_entity, 'api_users': accounts_provider_individ, 'ape_users': accounts_provider_entity, 'users': users, 'PD': accounts_paymentdetails})
+    else:
+        return redirect("loginAdmin")
+
+def PymentDetail(request):
+    if request.POST:
+        data = urllib.parse.parse_qs(request.POST.get("data", ""))
+        need_keys = ["email",  "expiration", "position"]
+
+        if check_keys(need_keys, data):
+
+            profile = PymentDetail()
+            profile.email = data["email"][0]
+            profile.expiration = data["expiration"][0]
+            profile.position = data["position"][0]
+
+            profile.save()
+
+            return JsonResponse({'response': "Подписка оформлена!"}, status=200)
+
+        else:
+            return JsonResponse({'error': "Заполните все поля"}, status=400)
+
 
 def tables(request):
-    conn = sqlite3.connect('db.sqlite3')
-    cur = conn.cursor()
+    if checkAdmin(request):
+        conn = sqlite3.connect('db.sqlite3')
+        cur = conn.cursor()
 
-    cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
-    accounts_buyer_individ = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_buyer_individ") #выгрузка данных из таблицы accounts_buyer_individ
+        accounts_buyer_individ = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
-    accounts_buyer_entity = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
+        accounts_buyer_entity = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_provider_individ") #выгрузка данных из таблицы accounts_provider_individ
-    accounts_provider_individ = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_provider_individ") #выгрузка данных из таблицы accounts_provider_individ
+        accounts_provider_individ = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_provider_entity") #выгрузка данных из таблицы accounts_provider_entity
-    accounts_provider_entity = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_provider_entity") #выгрузка данных из таблицы accounts_provider_entity
+        accounts_provider_entity = cur.fetchall()
 
-    cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
-    users = cur.fetchall() #выгрузка данных в переменную
+        cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
+        users = cur.fetchall() #выгрузка данных в переменную
 
-    conn.close()
+        conn.close()
 
-    return render(request, 'admin/tables.html', {'abi_users': accounts_buyer_individ,'abe_users': accounts_buyer_entity, 'api_users': accounts_provider_individ, 'ape_users': accounts_provider_entity, 'users': users})
-
+        return render(request, 'admin/tables.html', {'abi_users': accounts_buyer_individ,'abe_users': accounts_buyer_entity, 'api_users': accounts_provider_individ, 'ape_users': accounts_provider_entity, 'users': users})
+    else:
+        return redirect("loginAdmin")
 
 def grid(request):
-    conn = sqlite3.connect('db.sqlite3')
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
-    accounts_buyer_entity = cur.fetchall()
+    if checkAdmin(request):
+        conn = sqlite3.connect('db.sqlite3')
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM accounts_buyer_entity") #выгрузка данных из таблицы accounts_buyer_entity
+        accounts_buyer_entity = cur.fetchall()
 
-    cur.execute("SELECT * FROM accounts_provider_entity ") #выгрузка данных из таблицы accounts_provider_entity
-    accounts_provider_entity  = cur.fetchall()
+        cur.execute("SELECT * FROM accounts_provider_entity ") #выгрузка данных из таблицы accounts_provider_entity
+        accounts_provider_entity  = cur.fetchall()
 
 
-    cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
-    users = cur.fetchall() #выгрузка данных в переменную
+        cur.execute("SELECT * FROM auth_user") #выгрузка данных из таблицы auth_user
+        users = cur.fetchall() #выгрузка данных в переменную
 
-    conn.close()
+        conn.close()
 
-    return render(request, 'admin/grid.html', {'abi_users': accounts_buyer_entity,'ape_users': accounts_provider_entity , 'users': users})
+        return render(request, 'admin/grid.html', {'abi_users': accounts_buyer_entity,'ape_users': accounts_provider_entity , 'users': users})
+    else:
+        return redirect("loginAdmin")
 
 
 def buttons(request):
-    return render(request, 'admin/buttons.html')
+    if checkAdmin(request):
+        return render(request, 'admin/buttons.html')
+    else:
+        return redirect("loginAdmin")
 
 def interface(request):
-    return render(request, 'admin/interface.html')
+    if checkAdmin(request):
+        return render(request, 'admin/interface.html')
+    else:
+        return redirect("loginAdmin")
 
 def calendar(request):
-    return render(request, 'admin/calendar.html')
+    if checkAdmin(request):
+        return render(request, 'admin/calendar.html')
+    else:
+        return redirect("loginAdmin")
 
+#ОТЗЫВЫ
 def error(request):
-    return render(request, 'admin/error404.html')
+    if checkAdmin(request):
+        conn = sqlite3.connect('db.sqlite3')
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM accounts_reviews")
+        accounts_reviews = cur.fetchall()
+
+        conn.close()
+
+        return render(request, 'admin/error404.html', {'reviews': accounts_reviews})
+    else:
+        return redirect("loginAdmin")
+
+def NewReview(request):
+    if request.POST:
+        data = urllib.parse.parse_qs(request.POST.get("data", ""))
+        need_keys = ["name",  "email", "review"]
+
+        if check_keys(need_keys, data):
+
+            profile = reviews()
+            profile.name = data["name"][0]
+            profile.email = data["email"][0]
+            profile.review = data["review"][0]
+
+            profile.save()
+
+            return JsonResponse({'response': "Спасибо! Отзыв отправлен!"}, status=200)
+
+        else:
+            return JsonResponse({'error': "Заполните все поля"}, status=400)
+
 
 def loginAdmin(request):
-    return render(request, 'admin/login.html')
+        return render(request, 'admin/login.html')
 
+def checkAdmin(request):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+#ПРОВЕРКА НА АВТОРИЗАЦИЮ В ПАНЕЛЕ АДМИНИСТРИРОВАНИЯ
+def log_inAdmin(request):
+    if request.POST:
+        if not request.user.is_authenticated:
+            username = password = ''
+
+            email=request.POST.get("email")
+            password=request.POST.get("password")
+
+            user = authenticate(username=email, password=password)
+            if user is not None:
+                if user.is_active:
+                    if user.is_superuser:
+                        login(request, user)
+                        return JsonResponse({'response': "Авторизован.", "code": 200}, status=200)
+                    else:
+                        return JsonResponse({'error': "Пользователь не имеет прав.", "code": 401}, status=401)
+                else:
+                    return JsonResponse({'error': "Пользователь не активен.", "code": 401}, status=401)
+            else:
+                return JsonResponse({'error': "Неправильный логин или пароль.", "code": 401}, status=401)
+        else:
+            return JsonResponse({'error': "Вы уже авторизованы.", "code": 400}, status=400)
+
+#Изменение статуса пользователя
 def activeUser(request):
     conn = sqlite3.connect('db.sqlite3')
     cur = conn.cursor()
@@ -191,6 +315,30 @@ def register_z_ind(request):
 #для заказчика (юр.лицо)
 def register_z_ent(request):
     return render(request, 'login_buyer_entity.html')
+
+def registrationAdmin(request):
+    if checkAdmin(request):
+        if request.POST:
+            data = urllib.parse.parse_qs(request.POST.get("data", ""))
+            need_keys = ["last_name", "first_name", "middle_name",  "email", "password"]
+
+            if check_keys(need_keys, data):
+                user = User.objects.create_user(username=data["email"][0],email=data["email"][0], password=data['password'][0])
+                user.save()
+
+                profile = new_person()
+                profile.user = user
+                profile.first_name = data["first_name"][0]
+                profile.last_name = data["last_name"][0]
+                profile.middle_name = data["middle_name"][0]
+
+                profile.save()
+
+
+                return JsonResponse({'response': "Регистрация прошла успешно! Ожидайте подтверждение администратора", "code": 200}, status=200)
+    else:
+        return JsonResponse({'error': "Иди нахуй", "code": 401}, status=401)
+
 
 def registration(request, type_reg="undefined"):
     if request.POST:
@@ -334,24 +482,22 @@ def registration(request, type_reg="undefined"):
                 data = urllib.parse.parse_qs(request.POST.get("data", ""))
                 need_keys = ["last_name", "first_name", "middle_name",  "email", "password"]
 
-                # if check_keys(need_keys, data):
-                user = User.objects.create_user(username=data["email"][0],email=data["email"][0], password='glass onion')
-                user.save()
+                if check_keys(need_keys, data):
+                    user = User.objects.create_user(username=data["email"][0],email=data["email"][0], password=data['password'][0])
+                    user.save()
 
-                profile = new_person()
-                profile.user = user
-                profile.first_name = data["first_name"][0]
-                profile.last_name = data["last_name"][0]
-                profile.middle_name = data["middle_name"][0]
-                profile.password = data["password"][0]
+                    profile = new_person()
+                    profile.user = user
+                    profile.first_name = data["first_name"][0]
+                    profile.last_name = data["last_name"][0]
+                    profile.middle_name = data["middle_name"][0]
 
-                profile.save()
+                    profile.save()
 
 
-                return JsonResponse({'response': "Регистрация прошла успешно! Ожидайте подтверждение администратора", "code": 200}, status=200)
-
-                # else:
-                #     return JsonResponse({'error': "Заполните все поля, это привлечёт больше клиентов.", "code": 400}, status=400)
+                    return JsonResponse({'response': "Регистрация прошла успешно! Ожидайте подтверждение администратора", "code": 200}, status=200)
+                else:
+                    return JsonResponse({'error': "Заполните все поля, это привлечёт больше клиентов.", "code": 400}, status=400)
 
             else:
                 return JsonResponse({'error': "Неизвестный тип регистрации", "code": 400}, status=400)

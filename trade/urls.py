@@ -23,10 +23,7 @@ from django.urls import include
 admin.autodiscover()
 
 urlpatterns = [
-    # path('admin/changeActive/', views.changeActive, name='users_activ_deactiv'),
-    # path('admin/changeActive/<id_user>/', views.changeActiveInfo, name='users_activ_deactiv_info'),
-
-
+#ПАНЕЛЬ АДМИНИСТРАТОРА
     path('admin/', views.moderViews, name='homeAdmin'),
     path('admin/form/', views.moderForms, name='form-common'),
     path('admin/new/person/', views.charts, name='charts'),
@@ -42,19 +39,27 @@ urlpatterns = [
     path('admin/chat/', views.chat, name='chat'),
 
     # path('admin/', admin.site.urls),
+#РЕГИСТРАЦИЯ
     path('', views.home, name='home'),
     path('login/provider/individ/', views.register_p_ind, name='register_p_ind'),
     path('login/provider/entity/', views.register_p_ent, name='register_p_ent'),
     path('login/buyer/individ/', views.register_z_ind, name='register_z_ind'),
     path('login/buyer/entity/', views.register_z_ent, name='register_z_ent'),
 
+#API
     path('api/log_in/', views.log_in, name='log_in'),
     path('api/registration/<type_reg>/', views.registration, name='registration'),
+    path('api/log_inAdmin/', views.log_inAdmin),
+    path('api/regNew/', views.registrationAdmin),
+    path('api/NewReview/', views.NewReview),
+    path('api/PymentDetail/', views.PymentDetail),
 
+#ГЛАВНАЯ
     path('home/', views.accaunt_home, name='home_accaunt'),
     path('login/home/bay/', views.bay, name='bay'),
     path('rates/', views.rates, name='rates'),
     path('help/', views.help, name='help'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
+
 ]

@@ -112,6 +112,20 @@ class provider_entity(models.Model):
     short_desc = models.CharField(max_length=200)
 
 
+class new_person(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    middle_name = models.CharField(max_length=200)
+
+
+class reviews(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    review = models.CharField(max_length=5000)
+
+
 
 class Complaint(models.Model):
     name = models.CharField(max_length=255)
@@ -126,8 +140,23 @@ class Payment_detail(models.Model):
     text = models.TextField()
 
 
+class PaymentDetail(models.Model):
+    free = models.TextField()
+    pro = models.TextField()
+    vip = models.TextField()
+
+class PaymentDetails(models.Model):
+    email = models.CharField(max_length=200)
+    expiration = models.CharField(max_length=200)
+    position = models.CharField(max_length=3)
+
+
+
 class Message_to_user(models.Model):
     message = models.TextField()
+
+class Massage_to_admin(models.Model):
+    massage = models.TextField()
 
 
 def notify_admin(sender, instance, created, **kwargs):

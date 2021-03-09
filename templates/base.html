@@ -679,6 +679,41 @@
     </div>
   </div>
 
+  <div class="modal fade" id="Pro" tabindex="-1" aria-labelledby="provider" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <ul class="nav nav-tabs card-header-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true">Вы действительно желаете приобрести Pro?</a></li>
+            </ul>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body tab-content py-4">
+            <form method="POST" onsubmit="Site.PymentDetail(this); return false;" class="needs-validation tab-pane fade show active" >
+              <div class="form-group">
+                <label for="si-email">Email</label>
+                <input class="form-control" type="email" name="email" id="si-email" placeholder="Trade@example.com" required>
+                <div class="invalid-feedback">Please provide a valid email address.</div>
+              </div>
+              <div class="form-group">
+                <div class="password-toggle">
+                  <input class="form-control" name="expiration" type="text" placeholder="Срок действия" required>
+                </div>
+                <div class="password-toggle">
+                  <input class="form-control" name="position" type="text" placeholder="Vip/Pro" required>
+                </div>
+              </div>
+              <div class="form-group d-flex flex-wrap justify-content-between">
+              <input value="Приобрести" class="btn btn-primary btn-block btn-shadow" type="submit">
+            </form>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
   <!-- как учавствовать в торгах -->
   <div class="modal fade" id="rates" tabindex="-1" aria-labelledby="rates" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -714,6 +749,9 @@
       </div>
     </div>
   </div>
+  <!-- алм-->
+
+
 
   <!-- Как найти покупателя -->
   <div class="modal fade" id="buyer" tabindex="-1" aria-labelledby="buyer" aria-hidden="true">

@@ -8,7 +8,7 @@
       <div class="span12">
         <div class="widget-box widget-calendar">
           <div class="widget-title"> <span class="icon"><i class="icon-calendar"></i></span>
-            <h5>Список жалоб</h5>
+            <h5>Все отзывы</h5>
             <div class="buttons"> <a id="add-event" data-toggle="modal" href="#modal-add-event" class="btn btn-inverse btn-mini">Фильтр</a>
               <div class="modal hide" id="modal-add-event">
                 <div class="modal-header">
@@ -26,14 +26,28 @@
             </div>
           </div>
           <div class="widget-content">
-            <div class="panel-left">
-              <div id="fullcalendar"></div>
-            </div>
-            <div id="external-events" class="panel-right">
-              <div class="panel-content">
-                <h4>Упс... Список пуст</h4>
-              </div>
-            </div>
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Имя</th>
+                  <th>Отзыв</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                  {% for review in reviews %}
+                  <tr>
+                  <td>{{ review.1 }}</td>
+                  <td>{{ review.2 }}</td>
+                  <td>{{ review.3 }}</td>
+                  </tr>
+                  {% endfor %}
+
+
+
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

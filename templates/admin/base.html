@@ -50,8 +50,10 @@
       <li> <a href="{% url 'form-common' %}"> <i class="icon icon-plus"></i><span>Добавить нового сотрудника</span></a></li>
       <li> <a href="{% url 'chat' %}"> <i class="icon icon-envelope-alt"></i><span>Отправка сообщений пользователю</span></a></li>
       <li> <a href="{% url 'calendar' %}"> <i class="icon icon-comment"></i><span>Сообщения админу</span></a></li>
-      <li> <a href="{% url 'error' %}"> <i class="icon icon-info-sign"></i><span>Жалобы</span></a></li>
-      <li> <a href="{% url 'loginAdmin' %}"> <i class="icon icon-share-alt"></i><span>Выйти</span></a></li>
+      <li> <a href="{% url 'error' %}"> <i class="icon icon-info-sign"></i><span>Отзывы</span></a></li>
+      {% if user.is_authenticated %}<li> <a href="{% url 'logout' %}"> <i class="icon icon-share-alt"></i><span>Выйти</span></a></li>
+      {% else %}<li> <a href="{% url 'loginAdmin' %}"> <i class="icon icon-share-alt"></i><span>Войти</span></a></li>
+      {% endif %}
         </ul>
       </li>
     </ul>
@@ -75,7 +77,8 @@
 
 
   <script src="{% static 'admin/js/excanvas.min.js' %}"></script>
-  <script src="{% static 'admin/js/jquery.min.js' %}"></script>
+  <!-- <script src="{% static 'admin/js/jquery.min.js' %}"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
   <script src="{% static 'admin/js/jquery.ui.custom.js' %}"></script>
   <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'admin/js/jquery.flot.min.js' %}"></script>
